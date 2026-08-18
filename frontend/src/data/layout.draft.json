@@ -1,0 +1,110 @@
+[
+  {
+    "id": "hero_section",
+    "type": "hero",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "CREATIVE FREELANCER",
+      "subtitle": "Agus Nanda — Photography, Videography & Web Dev"
+    },
+    "style": {
+      "transform": "none"
+    }
+  },
+  {
+    "id": "about_section",
+    "type": "about_bento",
+    "x": -46,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "MEET AGUS NANDA",
+      "subtitle": "Memadukan cerita visual & pengembangan web modern."
+    },
+    "style": {
+      "transform": "translateX(-46px)"
+    }
+  },
+  {
+    "id": "portfolio_section",
+    "type": "portfolio_grid",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "FEATURED PORTFOLIO",
+      "category": "PHOTOGRAPHY"
+    },
+    "style": {
+      "transform": "none"
+    }
+  },
+  {
+    "id": "bts_section",
+    "type": "bts_gallery",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "BEHIND THE SCENES"
+    },
+    "style": {
+      "transform": "none"
+    }
+  },
+  {
+    "id": "software_section",
+    "type": "software_tools",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "SOFTWARE & WORKSPACE EQUIPMENT"
+    },
+    "style": {
+      "transform": "none"
+    }
+  },
+  {
+    "id": "faq_section",
+    "type": "faq_accordion",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "FREQUENTLY ASKED QUESTIONS"
+    },
+    "style": {
+      "transform": "none"
+    }
+  },
+  {
+    "id": "contact_section",
+    "type": "contact_form",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 100,
+    "zIndex": 1,
+    "content": {
+      "title": "LET'S COLLABORATE"
+    },
+    "style": {
+      "transform": "none"
+    }
+  }
+]

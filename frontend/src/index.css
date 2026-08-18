@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #FAFAF7;
+    color: #0A0A0A;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Archivo Black', sans-serif;
+  }
+}
+
+/* Custom Neobrutalism Utilities */
+.neo-border {
+  border: 3px solid #0A0A0A;
+}
+
+.neo-border-sm {
+  border: 2px solid #0A0A0A;
+}
+
+.neo-shadow {
+  box-shadow: 6px 6px 0px #0A0A0A;
+}
+
+.neo-shadow-sm {
+  box-shadow: 3px 3px 0px #0A0A0A;
+}
+
+.neo-shadow-lg {
+  box-shadow: 9px 9px 0px #0A0A0A;
+}
+
+.neo-shadow-xl {
+  box-shadow: 12px 12px 0px #0A0A0A;
+}
+
+.neo-btn {
+  border: 3px solid #0A0A0A;
+  box-shadow: 5px 5px 0px #0A0A0A;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #0A0A0A;
+}
+
+.neo-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px #0A0A0A;
+}
+
+.neo-card {
+  border: 3px solid #0A0A0A;
+  box-shadow: 6px 6px 0px #0A0A0A;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.neo-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #0A0A0A;
+}
+
+.neo-badge {
+  border: 2px solid #0A0A0A;
+  box-shadow: 3px 3px 0px #0A0A0A;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.neo-input {
+  border: 3px solid #0A0A0A;
+  box-shadow: 4px 4px 0px #0A0A0A;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px 16px;
+  outline: none;
+  font-weight: 500;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.neo-input:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0A0A0A;
+  background-color: #FFFFFF;
+}
+
+/* Custom Highlight Block Text */
+.highlight-block {
+  background-color: #FFC93C;
+  color: #0A0A0A;
+  padding: 2px 10px;
+  border: 3px solid #0A0A0A;
+  box-shadow: 4px 4px 0px #0A0A0A;
+  display: inline-block;
+  transform: rotate(-1deg);
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAF7;
+  border-left: 2px solid #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFC93C;
+  border: 2px solid #0A0A0A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5C8A;
+}

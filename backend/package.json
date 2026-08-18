@@ -1,0 +1,13 @@
+{
+  "name": "nanda-creative-backend",
+  "version": "1.0.0",
+  "description": "Backend API service for Nanda Creative portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "Agus Nanda",
+  "license": "ISC"
+}
