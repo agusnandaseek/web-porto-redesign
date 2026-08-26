@@ -142,7 +142,8 @@ export default function Hero({ lang }) {
                   href={heroData.instagramUrl || 'https://instagram.com/_agus_nanda_'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FF5C8A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  aria-label="Kunjungi Profil Instagram Agus Nanda"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] sm:shadow-[3.5px_3.5px_0px_#0A0A0A] rounded-xl hover:bg-[#FF5C8A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="Instagram"
                 >
                   <InstagramIcon className="w-5 h-5" />
@@ -152,7 +153,8 @@ export default function Hero({ lang }) {
                   href={heroData.whatsappUrl || 'https://wa.me/6281330890140'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#4CE0D2] hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  aria-label="Hubungi Agus Nanda via WhatsApp"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] sm:shadow-[3.5px_3.5px_0px_#0A0A0A] rounded-xl hover:bg-[#4CE0D2] hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="WhatsApp"
                 >
                   <Phone className="w-5 h-5" />
@@ -160,7 +162,8 @@ export default function Hero({ lang }) {
 
                 <a
                   href={heroData.emailUrl || 'mailto:putuagusnandapratama@gmail.com'}
-                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FFC93C] hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  aria-label="Kirim Email ke Putu Agus Nanda Pratama"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] sm:shadow-[3.5px_3.5px_0px_#0A0A0A] rounded-xl hover:bg-[#FFC93C] hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="Email"
                 >
                   <Mail className="w-5 h-5" />
@@ -170,7 +173,8 @@ export default function Hero({ lang }) {
                   href={heroData.githubUrl || 'https://github.com'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#0A0A0A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  aria-label="Kunjungi Profil GitHub Agus Nanda"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#0A0A0A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="GitHub"
                 >
                   <GithubIcon className="w-5 h-5" />
@@ -183,17 +187,17 @@ export default function Hero({ lang }) {
         </div>
 
         {/* RIGHT COLUMN: Pink Section (`#FF5C8A`) with Dynamic Project Gallery Grid (HIDDEN ON MOBILE, VISIBLE ON DESKTOP) */}
-        <div className="hidden lg:flex lg:col-span-7 bg-[#FF5C8A] border-t-[2.5px] lg:border-t-0 lg:border-l-[2.5px] border-[#0A0A0A] p-6 lg:p-8 items-center justify-center relative min-h-[550px]">
+        <div className="hidden lg:flex lg:col-span-7 bg-[#FF5C8A] border-t-[2.5px] lg:border-t-0 lg:border-l-[2.5px] border-[#0A0A0A] p-6 lg:p-8 items-center justify-center relative min-h-[580px]">
           
-          {/* Gallery Grid */}
+          {/* Gallery Grid with fixed geometry to eliminate CLS */}
           <div className="w-full grid grid-cols-12 gap-4">
             {galleryItems.map((item, idx) => (
               <div
                 key={item.id || idx}
-                className={`${item.gridClass || 'col-span-6 md:col-span-4 aspect-[16/10]'} bg-[#FFC93C] border-[2.5px] border-[#0A0A0A] shadow-[6px_6px_0px_#0A0A0A] rounded-[10px] overflow-hidden flex flex-col hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0px_#0A0A0A] transition-all duration-200 group`}
+                className={`${item.gridClass || 'col-span-6 md:col-span-4 aspect-[16/10]'} bg-[#FFC93C] border-[2.5px] border-[#0A0A0A] shadow-[6px_6px_0px_#0A0A0A] rounded-[10px] overflow-hidden flex flex-col hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0px_#0A0A0A] transition-all duration-200 group min-h-[120px]`}
               >
                 {/* Neobrutalist Window Title Header */}
-                <div className={`px-3 py-1.5 border-b-[2.5px] border-[#0A0A0A] ${item.headerBg || 'bg-[#FFC93C] text-[#0A0A0A]'} flex items-center justify-between shrink-0`}>
+                <div className={`px-3 py-1.5 border-b-[2.5px] border-[#0A0A0A] ${item.headerBg || 'bg-[#FFC93C] text-[#0A0A0A]'} flex items-center justify-between shrink-0 h-[30px]`}>
                   <span className="font-mono font-extrabold text-[11px] truncate mr-2">{item.filename}</span>
                   <div className="flex items-center gap-1 shrink-0">
                     <span className="w-2 h-2 rounded-full border border-[#0A0A0A] bg-white inline-block" />
@@ -201,11 +205,14 @@ export default function Hero({ lang }) {
                   </div>
                 </div>
 
-                {/* Media Image Showcase */}
-                <div className="relative flex-1 bg-[#0A0A0A] overflow-hidden">
+                {/* Media Image Showcase with aspect ratio locking */}
+                <div className="relative flex-1 bg-[#1A1A1A] overflow-hidden w-full h-full min-h-[90px]">
                   <img
                     src={item.img}
                     alt={item.filename}
+                    loading={idx < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    fetchPriority={idx < 2 ? 'high' : 'auto'}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#0A0A0A] text-white border-[1.5px] border-[#0A0A0A] font-mono text-[9px] font-extrabold rounded">

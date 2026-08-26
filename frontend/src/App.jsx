@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LayoutRenderer from './components/LayoutRenderer';
-import EditorToolbar from './components/EditorToolbar';
-import AdminPage from './pages/AdminPage';
+
+const AdminPage = lazy(() => import('./pages/AdminPage'));
+const EditorToolbar = lazy(() => import('./components/EditorToolbar'));
+
 import {
   getPublishedLayout,
   getDraftLayout,
@@ -51,7 +53,18 @@ export default function App() {
 
   // Render standalone Admin Page when navigating to /admin
   if (isAdminPage) {
-    return <AdminPage />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#FAFAF7] flex items-center justify-center font-mono font-bold text-sm">
+          <div className="p-4 bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_#0A0A0A] flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-[#FFC93C] animate-ping" />
+            <span>MEMUAT CMS ADMIN...</span>
+          </div>
+        </div>
+      }>
+        <AdminPage />
+      </Suspense>
+    );
   }
 
   return (
@@ -65,7 +78,11 @@ export default function App() {
       <Footer lang={lang} />
 
       {/* Floating Layout Editor Controls when in EDIT mode */}
-      {editable && <EditorToolbar onRefresh={fetchLayout} />}
+      {editable && (
+        <Suspense fallback={null}>
+          <EditorToolbar onRefresh={fetchLayout} />
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Navbar({ lang, setLang }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#" aria-label="Kembali ke Beranda Nanda Creative" className="flex items-center gap-3 group">
           <div className="w-11 h-11 bg-[#FFC93C] neo-border neo-shadow-sm flex items-center justify-center font-extrabold text-xl rounded-lg group-hover:rotate-6 transition-transform">
             N
           </div>
@@ -49,6 +49,7 @@ export default function Navbar({ lang, setLang }) {
           {/* Language Switcher */}
           <button
             onClick={() => setLang(lang === 'ID' ? 'EN' : 'ID')}
+            aria-label="Ganti Bahasa / Switch Language"
             className="neo-badge bg-white hover:bg-[#FF5C8A] hover:text-white transition-colors cursor-pointer"
             title="Ganti Bahasa / Switch Language"
           >

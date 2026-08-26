@@ -257,6 +257,7 @@ export default function About({ lang }) {
                   href={aboutData.cvUrl}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Download Official Curriculum Vitae / Resume PDF Agus Nanda"
                   className="px-2.5 sm:px-3.5 py-1.5 bg-[#A3E635] text-[#0A0A0A] font-mono text-[10px] sm:text-[11px] font-extrabold rounded-lg border-[2px] border-[#0A0A0A] shadow-[2px_2px_0px_#0A0A0A] sm:shadow-[2.5px_2.5px_0px_#0A0A0A] hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center gap-1.5"
                   title="Download Official CV / Resume (PDF)"
                 >
@@ -270,6 +271,7 @@ export default function About({ lang }) {
                 href={`https://wa.me/62${aboutData.whatsapp?.replace(/^0/, '')}`}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Chat WhatsApp Agus Nanda"
                 className="px-2.5 sm:px-3.5 py-1.5 bg-[#4CE0D2] text-[#0A0A0A] font-mono text-[10px] sm:text-[11px] font-extrabold rounded-lg border-[2px] border-[#0A0A0A] shadow-[2px_2px_0px_#0A0A0A] sm:shadow-[2.5px_2.5px_0px_#0A0A0A] hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center gap-1.5"
               >
                 <Phone className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
@@ -278,6 +280,7 @@ export default function About({ lang }) {
 
               <a
                 href={`mailto:${aboutData.email}`}
+                aria-label="Kirim Email ke Putu Agus Nanda Pratama"
                 className="px-2.5 sm:px-3.5 py-1.5 bg-[#FF5C8A] text-white font-mono text-[10px] sm:text-[11px] font-extrabold rounded-lg border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2px_2px_0px_#0A0A0A] sm:shadow-[2.5px_2.5px_0px_#0A0A0A] hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center gap-1.5"
               >
                 <Mail className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
@@ -288,6 +291,7 @@ export default function About({ lang }) {
                 href={`https://instagram.com/${aboutData.instagram?.replace(/^@/, '')}`}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Kunjungi Instagram Agus Nanda"
                 className="px-2.5 sm:px-3.5 py-1.5 bg-[#3B6EF5] text-white font-mono text-[10px] sm:text-[11px] font-extrabold rounded-lg border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2px_2px_0px_#0A0A0A] sm:shadow-[2.5px_2.5px_0px_#0A0A0A] hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center gap-1.5"
               >
                 <InstagramIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5" />

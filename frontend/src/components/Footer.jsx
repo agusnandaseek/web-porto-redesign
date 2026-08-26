@@ -80,6 +80,7 @@ export default function Footer({ lang }) {
                 href="https://instagram.com/_agus_nanda_"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Instagram Resmi Agus Nanda"
                 className="neo-btn bg-[#FF5C8A] text-white p-2.5 sm:p-3 rounded-xl hover:rotate-6"
                 title="Instagram"
               >
@@ -89,6 +90,7 @@ export default function Footer({ lang }) {
                 href="https://wa.me/6281330890140"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="WhatsApp Resmi Agus Nanda"
                 className="neo-btn bg-[#4CE0D2] text-[#0A0A0A] p-2.5 sm:p-3 rounded-xl hover:-rotate-6"
                 title="WhatsApp"
               >
@@ -96,6 +98,7 @@ export default function Footer({ lang }) {
               </a>
               <a
                 href="mailto:putuagusnandapratama@gmail.com"
+                aria-label="Email Resmi Agus Nanda"
                 className="neo-btn bg-[#FFC93C] text-[#0A0A0A] p-2.5 sm:p-3 rounded-xl hover:rotate-6"
                 title="Email"
               >
@@ -105,6 +108,7 @@ export default function Footer({ lang }) {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="GitHub Resmi Agus Nanda"
                 className="neo-btn bg-[#0A0A0A] text-white p-2.5 sm:p-3 rounded-xl hover:-rotate-6"
                 title="GitHub"
               >
@@ -127,6 +131,7 @@ export default function Footer({ lang }) {
 
           <button
             onClick={scrollToTop}
+            aria-label="Kembali ke Bagian Atas Halaman"
             className="neo-btn bg-[#FFC93C] text-[#0A0A0A] px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs rounded-xl flex items-center gap-2"
           >
             <span>BACK TO TOP</span>

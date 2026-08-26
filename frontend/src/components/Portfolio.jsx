@@ -103,6 +103,7 @@ export default function Portfolio({ lang }) {
               <button
                 onClick={handlePrev}
                 disabled={currentPage === 1}
+                aria-label="Halaman Portofolio Sebelumnya"
                 className={`p-2 bg-white text-[#0A0A0A] border-[2px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] rounded-xl flex items-center justify-center transition-all ${
                   currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] cursor-pointer hover:bg-gray-100'
                 }`}
@@ -114,6 +115,7 @@ export default function Portfolio({ lang }) {
               <button
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
+                aria-label="Halaman Portofolio Berikutnya"
                 className={`p-2 bg-[#FFC93C] text-[#0A0A0A] border-[2px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] rounded-xl flex items-center justify-center transition-all ${
                   currentPage === totalPages ? 'opacity-40 cursor-not-allowed' : 'hover:-translate-y-0.5 active:translate-x-[1px] active:translate-y-[1px] cursor-pointer hover:bg-[#f0b722]'
                 }`}
