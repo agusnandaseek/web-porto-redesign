@@ -36,7 +36,7 @@ export default function Hero({ lang }) {
       tag: 'PHOTO',
       headerBg: 'bg-[#A78BFA] text-white',
       img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-      gridClass: 'col-span-12 md:col-span-4 md:row-span-2 aspect-[3/4] md:aspect-auto',
+      gridClass: 'col-span-12 md:col-span-4 md:row-span-2 h-full min-h-[260px] aspect-[3/4] md:aspect-auto',
     },
     {
       id: 4,
