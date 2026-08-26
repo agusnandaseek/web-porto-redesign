@@ -79,101 +79,101 @@ export default function Hero({ lang }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100vh-5rem)]">
         
         {/* LEFT COLUMN: Grid Paper Background (Centered on mobile, left-aligned on desktop) */}
-        <div className="col-span-1 lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-center items-center lg:items-start text-center lg:text-left relative bg-[linear-gradient(to_right,#0a0a0a0d_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a0d_1px,transparent_1px)] bg-[size:24px_24px] sm:bg-[size:28px_28px] overflow-hidden min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-5rem)]">
+        <div className="col-span-1 lg:col-span-5 px-5 py-10 sm:p-10 lg:p-12 flex flex-col justify-center items-center lg:items-start text-center lg:text-left relative bg-[linear-gradient(to_right,#0a0a0a0d_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a0d_1px,transparent_1px)] bg-[size:24px_24px] sm:bg-[size:28px_28px] overflow-hidden min-h-[calc(100vh-5rem)]">
           
-          <div className="space-y-5 sm:space-y-6 my-auto max-w-xl scale-100 lg:scale-[1.10] origin-center lg:origin-left transition-transform flex flex-col items-center lg:items-start">
+          <div className="space-y-6 sm:space-y-7 my-auto w-full max-w-sm sm:max-w-xl scale-100 lg:scale-[1.10] origin-center lg:origin-left transition-transform flex flex-col items-center lg:items-start">
             
             {/* Top Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#A78BFA] text-white border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-md font-mono text-[11px] sm:text-xs font-extrabold -rotate-1 hover:rotate-0 transition-transform">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#A78BFA] text-white border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] sm:shadow-[3.5px_3.5px_0px_#0A0A0A] rounded-xl font-mono text-xs sm:text-sm font-extrabold -rotate-1 hover:rotate-0 transition-transform">
               <span>{heroData.greeting || "HEY, I'M AGUS NANDA 👋"}</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] sm:leading-[1.05] text-[#0A0A0A] text-center lg:text-left">
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] sm:leading-[1.05] text-[#0A0A0A] text-center lg:text-left w-full">
               {heroData.headline1 || 'CREATIVE'} <br />
-              <span className="inline-block mt-2 px-3.5 py-0.5 bg-[#FFC93C] text-[#0A0A0A] border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[5px_5px_0px_#0A0A0A] sm:shadow-[6px_6px_0px_#0A0A0A] rounded-xl -rotate-1">
+              <span className="inline-block mt-2.5 px-4 py-1 sm:px-5 sm:py-1.5 bg-[#FFC93C] text-[#0A0A0A] border-[2.5px] sm:border-[3px] border-[#0A0A0A] shadow-[5px_5px_0px_#0A0A0A] sm:shadow-[6px_6px_0px_#0A0A0A] rounded-2xl -rotate-1">
                 {heroData.headline2 || 'FREELANCER'}
               </span>
             </h1>
 
             {/* Sub-headline / Roles */}
-            <p className="font-mono text-xs sm:text-sm font-extrabold text-[#0A0A0A] tracking-wider uppercase text-center lg:text-left">
+            <p className="font-mono text-xs sm:text-sm lg:text-base font-extrabold text-[#0A0A0A] tracking-wider uppercase text-center lg:text-left">
               {heroData.roles || 'PHOTOGRAPHY • VIDEOGRAPHY • FULLSTACK DEV'}
             </p>
 
             {/* Paragraph Description */}
-            <p className="text-xs sm:text-sm lg:text-base font-medium text-[#0A0A0A]/85 leading-relaxed font-mono text-center lg:text-left max-w-md lg:max-w-none">
+            <p className="text-xs sm:text-sm lg:text-base font-medium text-[#0A0A0A]/90 leading-relaxed font-mono text-center lg:text-left max-w-md lg:max-w-none px-1 sm:px-0">
               {heroData.description ||
                 (lang === 'ID'
                   ? 'Saya memadukan seni cerita visual melalui Fotografi & Videografi, serta membangun website modern dengan kode yang bersih dan responsif.'
                   : 'I blend visual storytelling through Photography & Videography, and build scalable web applications with clean, efficient code.')}
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-row flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            {/* CTA Buttons - Side by Side on Mobile & Desktop */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-3.5 pt-1.5 w-full max-w-sm sm:max-w-md">
               <a
                 href={heroData.ctaPrimaryUrl || '#portfolio'}
-                className="px-4.5 sm:px-5 py-2.5 sm:py-3 bg-[#A3E635] text-[#0A0A0A] font-heading font-extrabold text-xs sm:text-sm rounded-xl border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[3.5px_3.5px_0px_#0A0A0A] sm:shadow-[4px_4px_0px_#0A0A0A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0A0A0A] transition-all flex items-center justify-center gap-2"
+                className="px-3 sm:px-5 py-3.5 bg-[#A3E635] text-[#0A0A0A] font-heading font-extrabold text-xs sm:text-sm rounded-xl border-[2.5px] border-[#0A0A0A] shadow-[3.5px_3.5px_0px_#0A0A0A] sm:shadow-[4px_4px_0px_#0A0A0A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0A0A0A] transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center"
               >
                 <span>{heroData.ctaPrimaryLabel || (lang === 'ID' ? 'LIHAT PORTFOLIO' : 'VIEW MY WORK')}</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                <ArrowUpRight className="w-4 h-4 stroke-[3] shrink-0" />
               </a>
 
               <a
                 href={heroData.ctaSecondaryUrl || '#contact'}
-                className="px-4.5 sm:px-5 py-2.5 sm:py-3 bg-white text-[#0A0A0A] font-heading font-extrabold text-xs sm:text-sm rounded-xl border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[3.5px_3.5px_0px_#0A0A0A] sm:shadow-[4px_4px_0px_#0A0A0A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0A0A0A] transition-all flex items-center justify-center gap-2"
+                className="px-3 sm:px-5 py-3.5 bg-white text-[#0A0A0A] font-heading font-extrabold text-xs sm:text-sm rounded-xl border-[2.5px] border-[#0A0A0A] shadow-[3.5px_3.5px_0px_#0A0A0A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0A0A0A] transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center"
               >
                 <span>{heroData.ctaSecondaryLabel || (lang === 'ID' ? 'HUBUNGI SAYA' : 'CONTACT ME')}</span>
-                <ArrowDown className="w-4 h-4 stroke-[3]" />
+                <ArrowDown className="w-4 h-4 stroke-[3] shrink-0" />
               </a>
             </div>
 
             {/* Divider Line */}
-            <div className="w-[80%] lg:w-[85%] h-[2px] bg-[#0A0A0A]/15 my-1 sm:my-2 mx-auto lg:mx-0" />
+            <div className="w-full max-w-sm sm:max-w-md h-[2.5px] bg-[#0A0A0A]/15 my-1.5 mx-auto lg:mx-0" />
 
             {/* Connect With Me Social Row */}
-            <div className="space-y-2 sm:space-y-3 flex flex-col items-center lg:items-start">
-              <span className="font-mono text-[10px] sm:text-xs font-extrabold text-[#0A0A0A] uppercase tracking-wider block text-center lg:text-left">
+            <div className="space-y-3 flex flex-col items-center lg:items-start w-full">
+              <span className="font-mono text-[11px] sm:text-xs font-extrabold text-[#0A0A0A] uppercase tracking-wider block text-center lg:text-left">
                 CONNECT WITH ME
               </span>
 
-              <div className="flex items-center justify-center lg:justify-start gap-3">
+              <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-3.5">
                 <a
                   href={heroData.instagramUrl || 'https://instagram.com/_agus_nanda_'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 bg-white text-[#0A0A0A] border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FF5C8A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FF5C8A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="Instagram"
                 >
-                  <InstagramIcon className="w-4 h-4" />
+                  <InstagramIcon className="w-5 h-5" />
                 </a>
 
                 <a
                   href={heroData.whatsappUrl || 'https://wa.me/6281330890140'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 bg-white text-[#0A0A0A] border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#4CE0D2] hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#4CE0D2] hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="WhatsApp"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-5 h-5" />
                 </a>
 
                 <a
                   href={heroData.emailUrl || 'mailto:putuagusnandapratama@gmail.com'}
-                  className="p-2.5 bg-white text-[#0A0A0A] border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FFC93C] hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#FFC93C] hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="Email"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-5 h-5" />
                 </a>
 
                 <a
                   href={heroData.githubUrl || 'https://github.com'}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 bg-white text-[#0A0A0A] border-[2px] sm:border-[2.5px] border-[#0A0A0A] shadow-[2.5px_2.5px_0px_#0A0A0A] sm:shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#0A0A0A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                  className="p-3 sm:p-3.5 bg-white text-[#0A0A0A] border-[2.5px] border-[#0A0A0A] shadow-[3px_3px_0px_#0A0A0A] rounded-xl hover:bg-[#0A0A0A] hover:text-white hover:-translate-y-0.5 transition-all flex items-center justify-center"
                   title="GitHub"
                 >
-                  <GithubIcon className="w-4 h-4" />
+                  <GithubIcon className="w-5 h-5" />
                 </a>
               </div>
             </div>
