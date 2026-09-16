@@ -112,7 +112,10 @@ export default function ProjectModal({ project, onClose }) {
           {/* Tools Used Pills */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-mono font-extrabold text-[#0A0A0A]/70 uppercase">TOOLS USED:</span>
-            {project.tools?.map((tool, idx) => (
+            {(Array.isArray(project.tools)
+              ? project.tools
+              : (project.tools || '').split(',').map((t) => t.trim()).filter(Boolean)
+            ).map((tool, idx) => (
               <span key={idx} className="px-2.5 py-1 bg-[#4CE0D2]/40 text-[#0A0A0A] border border-[#0A0A0A] font-mono text-xs font-extrabold rounded-md shadow-sm">
                 {tool}
               </span>

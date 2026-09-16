@@ -218,19 +218,25 @@ export default function AdminPage() {
 
   // 3. PORTFOLIO SAVE & ITEM EDIT HANDLERS
   const handleSaveAllPortfolio = async () => {
+    const normalizedPortfolio = portfolioData.map((p) => {
+      let toolsArr = p.tools;
+      if (typeof toolsArr === 'string') {
+        toolsArr = toolsArr.split(',').map((t) => t.trim()).filter(Boolean);
+      } else if (!Array.isArray(toolsArr)) {
+        toolsArr = [];
+      }
+      return { ...p, tools: toolsArr };
+    });
     await updateSectionData('portfolioHeader', portfolioHeaderData);
-    await updateSectionData('portfolio', portfolioData);
-    showToast('✅ Seluruh Project Portofolio berhasil disimpan!');
+    await updateSectionData('portfolio', normalizedPortfolio);
+    setPortfolioData(normalizedPortfolio);
+    showToast('✅ Seluruh Project Portofolio & Project Overview berhasil disimpan!');
   };
 
   const handleProjectItemChange = (actualIndex, field, value) => {
     const currentList = [...portfolioData];
     if (currentList[actualIndex]) {
-      if (field === 'tools') {
-        currentList[actualIndex] = { ...currentList[actualIndex], tools: value.split(',').map((t) => t.trim()) };
-      } else {
-        currentList[actualIndex] = { ...currentList[actualIndex], [field]: value };
-      }
+      currentList[actualIndex] = { ...currentList[actualIndex], [field]: value };
       setPortfolioData(currentList);
     }
   };
@@ -240,13 +246,17 @@ export default function AdminPage() {
       showToast('⚠️ Judul dan URL Foto wajib diisi!');
       return;
     }
+    const toolsArr = typeof newProject.tools === 'string'
+      ? newProject.tools.split(',').map((t) => t.trim()).filter(Boolean)
+      : (newProject.tools || []);
+
     const updated = [
       ...portfolioData,
       {
         id: 'p_' + Date.now(),
         ...newProject,
         category: targetCategory,
-        tools: newProject.tools.split(',').map((t) => t.trim()),
+        tools: toolsArr,
       },
     ];
     setPortfolioData(updated);
@@ -1202,7 +1212,7 @@ export default function AdminPage() {
               {portfolioSubTab !== 'HEADER' && (
                 <div className="space-y-6">
                   {/* Form Tambah Project */}
-                  <div className="bg-white border-[3px] border-[#0A0A0A] shadow-[8px_8px_0px_#0A0A0A] rounded-2xl p-6 sm:p-8 space-y-4">
+                  <div className="bg-white border-[3px] border-[#0A0A0A] shadow-[8px_8px_0px_#0A0A0A] rounded-2xl p-6 sm:p-8 space-y-5">
                     <div className="flex items-center justify-between border-b-[2.5px] border-[#0A0A0A] pb-3">
                       <div>
                         <span className="px-2.5 py-1 bg-[#0A0A0A] text-white font-mono text-xs font-extrabold rounded-lg">
@@ -1213,9 +1223,11 @@ export default function AdminPage() {
                         </h3>
                       </div>
                     </div>
+
+                    {/* Row 1: Title, Camera, Ratio */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
                       <div>
-                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">JUDUL PROJECT:</label>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">JUDUL PROJECT *:</label>
                         <input
                           type="text"
                           placeholder="Misal: HSS SWEET SEVENTEEN"
@@ -1247,9 +1259,45 @@ export default function AdminPage() {
                         </select>
                       </div>
                     </div>
+
+                    {/* Row 2: Client, Role, Year */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+                      <div>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">CLIENT / EVENT:</label>
+                        <input
+                          type="text"
+                          placeholder="Misal: Hellen Sweet 17th / SMAN 1 Mengwi"
+                          value={newProject.client || ''}
+                          onChange={(e) => setNewProject({ ...newProject, client: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">ROLE SPESIFIK:</label>
+                        <input
+                          type="text"
+                          placeholder="Misal: Lead Event Photographer / Motion Editor"
+                          value={newProject.role || ''}
+                          onChange={(e) => setNewProject({ ...newProject, role: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">TAHUN PELAKSANAAN:</label>
+                        <input
+                          type="text"
+                          placeholder="Misal: 2024 - 2025"
+                          value={newProject.year || ''}
+                          onChange={(e) => setNewProject({ ...newProject, year: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 3: Image & Video URLs */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
                       <div>
-                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL FOTO / POSTER IMAGEKIT:</label>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL FOTO / POSTER IMAGEKIT *:</label>
                         <input
                           type="text"
                           placeholder="https://ik.imagekit.io/..."
@@ -1269,6 +1317,48 @@ export default function AdminPage() {
                         />
                       </div>
                     </div>
+
+                    {/* Row 4: Tools & Short Description */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+                      <div>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">TOOLS USED (PISAH DENGAN KOMA):</label>
+                        <input
+                          type="text"
+                          placeholder="Sony A6700, Lightroom Classic, Photoshop"
+                          value={newProject.tools}
+                          onChange={(e) => setNewProject({ ...newProject, tools: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">DESKRIPSI SINGKAT KARTU (CARD PREVIEW):</label>
+                        <input
+                          type="text"
+                          placeholder="Ringkasan 1-2 kalimat untuk preview di depan..."
+                          value={newProject.description}
+                          onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 5: PROJECT OVERVIEW (FULL DESCRIPTION DI MODAL) */}
+                    <div className="font-mono text-xs space-y-1">
+                      <div className="flex items-center justify-between">
+                        <label className="block font-extrabold text-[#0A0A0A] uppercase">
+                          📖 PROJECT OVERVIEW (DETAIL LENGKAP PADA POPUP SPEC MODAL):
+                        </label>
+                        <span className="text-[10px] text-[#3B6EF5] font-extrabold">Tampil pada popup modal saat kartu diklik</span>
+                      </div>
+                      <textarea
+                        rows={3}
+                        placeholder="Jelaskan detail lengkap project, konsep visual, proses produksi, atau arsitektur teknologi..."
+                        value={newProject.fullDescription}
+                        onChange={(e) => setNewProject({ ...newProject, fullDescription: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-[#FAFAF7] border-[2px] border-[#0A0A0A] rounded-xl font-bold leading-relaxed"
+                      />
+                    </div>
+
                     <button
                       onClick={() => handleAddProjectForCategory(portfolioSubTab)}
                       className="px-6 py-3 bg-[#FFC93C] text-[#0A0A0A] font-mono text-xs font-extrabold border-[2.5px] border-[#0A0A0A] shadow-[4px_4px_0px_#0A0A0A] rounded-xl hover:bg-[#f0b722] cursor-pointer flex items-center gap-2"
@@ -1302,9 +1392,16 @@ export default function AdminPage() {
                             className="bg-[#FAFAF7] border-[2.5px] border-[#0A0A0A] shadow-[5px_5px_0px_#0A0A0A] rounded-2xl p-5 space-y-4"
                           >
                             <div className="flex items-center justify-between border-b border-[#0A0A0A]/15 pb-3">
-                              <span className="px-3 py-1 bg-[#3B6EF5] text-white border border-[#0A0A0A] font-mono text-xs font-extrabold rounded-lg">
-                                {item.category} — {item.title}
-                              </span>
+                              <div className="flex items-center gap-2">
+                                <span className="px-3 py-1 bg-[#3B6EF5] text-white border border-[#0A0A0A] font-mono text-xs font-extrabold rounded-lg">
+                                  {item.category} — {item.title || 'Untitled Project'}
+                                </span>
+                                {item.client && (
+                                  <span className="hidden sm:inline-block px-2.5 py-0.5 bg-[#FFC93C] text-[#0A0A0A] border border-[#0A0A0A] font-mono text-[10px] font-extrabold rounded">
+                                    {item.client}
+                                  </span>
+                                )}
+                              </div>
                               <button
                                 onClick={() => handleDeleteProject(item.id)}
                                 className="px-3 py-1.5 bg-[#FF5C8A] text-white border border-[#0A0A0A] rounded-lg hover:bg-[#e04b77] cursor-pointer font-mono text-xs font-extrabold flex items-center gap-1.5"
@@ -1313,62 +1410,150 @@ export default function AdminPage() {
                                 <span>Hapus</span>
                               </button>
                             </div>
+
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start font-mono text-xs">
-                              <div className="md:col-span-3 aspect-[16/10] bg-[#0A0A0A] rounded-xl border-[2px] border-[#0A0A0A] overflow-hidden relative">
+                              {/* Left Column: Image Preview */}
+                              <div className="md:col-span-3 aspect-[16/10] bg-[#0A0A0A] rounded-xl border-[2px] border-[#0A0A0A] overflow-hidden relative shadow-sm">
                                 <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                                 <span className="absolute top-1 right-1 px-1.5 py-0.5 bg-[#FFC93C] text-[#0A0A0A] font-mono text-[9px] font-extrabold rounded">
                                   {item.aspectRatio || '16:9'}
                                 </span>
                               </div>
-                              <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                <div>
-                                  <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">JUDUL PROJECT:</label>
-                                  <input
-                                    type="text"
-                                    value={item.title}
-                                    onChange={(e) => handleProjectItemChange(actualIndex, 'title', e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+
+                              {/* Right Column: Editable Fields */}
+                              <div className="md:col-span-9 space-y-3">
+                                {/* Row 1: Title, Camera, Ratio */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">JUDUL PROJECT:</label>
+                                    <input
+                                      type="text"
+                                      value={item.title || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'title', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">SPECS / CAMERA:</label>
+                                    <input
+                                      type="text"
+                                      value={item.camera || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'camera', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">ASPECT RATIO:</label>
+                                    <select
+                                      value={item.aspectRatio || '16:9'}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'aspectRatio', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    >
+                                      <option value="16:9">16:9 (Widescreen)</option>
+                                      <option value="9:16">9:16 (Vertikal Reels)</option>
+                                      <option value="1:1">1:1 (Persegi)</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                {/* Row 2: Client, Role, Year */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">CLIENT / EVENT:</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Misal: Hellen Sweet 17th"
+                                      value={item.client || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'client', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">ROLE SPESIFIK:</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Misal: Lead Event Photographer"
+                                      value={item.role || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'role', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">TAHUN:</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Misal: 2024 - 2025"
+                                      value={item.year || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'year', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                </div>
+
+                                {/* Row 3: Image & Video URLs */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL FOTO / POSTER IMAGEKIT:</label>
+                                    <input
+                                      type="text"
+                                      value={item.image || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'image', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL VIDEO FOOTAGE (.WEBM / .MP4):</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Opsional (untuk video)"
+                                      value={item.mediaUrl || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'mediaUrl', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                </div>
+
+                                {/* Row 4: Tools & Short Description */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">TOOLS USED (PISAH DENGAN KOMA):</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Sony A6700, Lightroom, Photoshop"
+                                      value={Array.isArray(item.tools) ? item.tools.join(', ') : item.tools || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'tools', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">DESKRIPSI SINGKAT (CARD PREVIEW):</label>
+                                    <input
+                                      type="text"
+                                      placeholder="Deskripsi singkat yang tampil di kartu depan..."
+                                      value={item.description || ''}
+                                      onChange={(e) => handleProjectItemChange(actualIndex, 'description', e.target.value)}
+                                      className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
+                                    />
+                                  </div>
+                                </div>
+
+                                {/* Row 5: PROJECT OVERVIEW (FULL DESCRIPTION DI MODAL) */}
+                                <div className="space-y-1">
+                                  <div className="flex items-center justify-between">
+                                    <label className="block font-extrabold text-[#0A0A0A] uppercase">
+                                      📖 PROJECT OVERVIEW (DETAIL MODAL SPEC SHEET):
+                                    </label>
+                                    <span className="text-[10px] text-[#3B6EF5] font-extrabold">Tampil pada popup spesifikasi saat project diklik</span>
+                                  </div>
+                                  <textarea
+                                    rows={3}
+                                    placeholder="Tuliskan overview lengkap mengenai project ini..."
+                                    value={item.fullDescription !== undefined ? item.fullDescription : item.description || ''}
+                                    onChange={(e) => handleProjectItemChange(actualIndex, 'fullDescription', e.target.value)}
+                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold leading-relaxed"
                                   />
                                 </div>
-                                <div>
-                                  <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">ASPECT RATIO:</label>
-                                  <select
-                                    value={item.aspectRatio || '16:9'}
-                                    onChange={(e) => handleProjectItemChange(actualIndex, 'aspectRatio', e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
-                                  >
-                                    <option value="16:9">16:9 (Widescreen)</option>
-                                    <option value="9:16">9:16 (Vertikal Reels)</option>
-                                    <option value="1:1">1:1 (Persegi)</option>
-                                  </select>
-                                </div>
-                                <div>
-                                  <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">SPECS / CAMERA:</label>
-                                  <input
-                                    type="text"
-                                    value={item.camera || ''}
-                                    onChange={(e) => handleProjectItemChange(actualIndex, 'camera', e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
-                                  />
-                                </div>
-                                <div className="sm:col-span-2">
-                                  <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL FOTO / POSTER IMAGEKIT:</label>
-                                  <input
-                                    type="text"
-                                    value={item.image}
-                                    onChange={(e) => handleProjectItemChange(actualIndex, 'image', e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
-                                  />
-                                </div>
-                                <div>
-                                  <label className="block font-extrabold text-[#0A0A0A] mb-1 uppercase">URL VIDEO FOOTAGE (.WEBM):</label>
-                                  <input
-                                    type="text"
-                                    value={item.mediaUrl || ''}
-                                    onChange={(e) => handleProjectItemChange(actualIndex, 'mediaUrl', e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-[#0A0A0A] rounded-lg font-bold"
-                                  />
-                                </div>
+
                               </div>
                             </div>
                           </div>
